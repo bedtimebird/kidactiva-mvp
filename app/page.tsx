@@ -4,7 +4,7 @@ export default function Home() {
   return (
     <main className="main">
       <h1 className="title">
-        Find Your Child's Next Adventure in Vancouver
+        Find Your Childs Next Adventure in Vancouver
       </h1>
 
       {/* This is where you render the component */}
