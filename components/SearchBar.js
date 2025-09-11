@@ -1,26 +1,55 @@
 "use client";
 
 import React, { useState } from 'react';
-import Head from 'next/head';
-import SearchBar from '../components/SearchBar'; // Import the component
 
-export default function Home() {
+// This is the main search bar component for the homepage.
+export default function SearchBar() {
+  // State to hold the user's selections
+  const [location, setLocation] = useState('');
+  const [age, setAge] = useState('');
+  const [dateRange, setDateRange] = useState('');
+
+  // This function will be called when the user clicks the "Search" button.
+  // For now, it just logs the selections. Later, it will navigate
+  // to the search results page with these parameters.
+  const handleSearch = (e) => {
+    e.preventDefault(); // Prevents the form from reloading the page
+    console.log({ location, age, dateRange });
+    // TODO: Implement navigation to the search results page
+  };
+
   return (
-    <div className="container">
-      <Head>
-        <title>KidActiva - Find Your Childs Next Adventure</title>
-        <meta name="description" content="Discover and book kids activities in Vancouver" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+    <form onSubmit={handleSearch} className="search-bar-form">
+      {/* Location Dropdown */}
+      <select value={location} onChange={(e) => setLocation(e.target.value)} required>
+        <option value="" disabled>Location</option>
+        <option value="downtown">Downtown</option>
+        <option value="north_east">North East</option>
+        <option value="south_east">South East</option>
+        <option value="north_west">North West</option>
+        <option value="south_west">South West</option>
+      </select>
 
-      <main className="main">
-        <h1 className="title">
-          Find Your Childs Next Adventure in Vancouver
-        </h1>
+      {/* Child's Age Dropdown */}
+      <select value={age} onChange={(e) => setAge(e.target.value)} required>
+        <option value="" disabled>Child's Age</option>
+        <option value="3-5">3-5 Years</option>
+        <option value="6-8">6-8 Years</option>
+        <option value="9-12">9-12 Years</option>
+        <option value="13+">13+ Years</option>
+      </select>
 
-        {/* This is where you render the component */}
-        <SearchBar />
-      </main>
-    </div>
+      {/* Date Range Dropdown */}
+      <select value={dateRange} onChange={(e) => setDateRange(e.target.value)} required>
+        <option value="" disabled>Date Range</option>
+        <option value="currently_registering">Currently Registering</option>
+        <option value="summer">Summer</option>
+        <option value="fall">Fall</option>
+        <option value="winter">Winter</option>
+        <option value="spring">Spring</option>
+      </select>
+
+      <button type="submit">Search</button>
+    </form>
   );
 }
