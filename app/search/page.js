@@ -3,10 +3,8 @@
 
 import React, { useState, useEffect } from 'react';
 import { createClient } from '@supabase/supabase-js';
-import ActivityCard from '../../components/ActivityCard'; // Adjust path as needed
+import ActivityCard from '../../components/ActivityCard';
 
-// Initialize the Supabase client
-// IMPORTANT: Make sure your .env.local file is correctly set up
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 const supabase = createClient(supabaseUrl, supabaseAnonKey);
@@ -15,15 +13,21 @@ export default function SearchResultsPage() {
   const [activities, setActivities] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  // This effect runs once when the component mounts to fetch data
   useEffect(() => {
     const fetchActivities = async () => {
       setLoading(true);
       
-      // Fetch all records from the 'activities' table
+      // UPDATED QUERY: This now joins the related tables.
+      // It fetches all columns from 'activities' (*) and the 'name' from the related
+      // 'providers', 'locations', and 'categories' tables.
       const { data, error } = await supabase
         .from('activities')
-        .select('*');
+        .select(`
+          *,
+          providers ( name ),
+          locations ( name ),
+          categories ( name )
+        `);
 
       if (error) {
         console.error('Error fetching activities:', error);
@@ -34,7 +38,7 @@ export default function SearchResultsPage() {
     };
 
     fetchActivities();
-  }, []); // The empty dependency array means this runs only once
+  }, []);
 
   if (loading) {
     return <div>Loading activities...</div>;
