@@ -1,6 +1,3 @@
-JavaScript
-
-// app/search/page.js
 "use client";
 
 import React, { useState, useEffect, Suspense } from 'react';
@@ -40,19 +37,24 @@ function SearchResults() {
 
       // 1. Filter by location
       if (location) {
-        // We join on the locations table and filter by its name.
-        query = query.filter('locations.name', 'eq', location);
+        // We need to query the joined table's column.
+        // Assuming your locations table has a 'name' column that matches the search param.
+        // This requires an RPC or a view if direct joining filter is complex.
+        // For simplicity, let's assume a direct column 'location_name' exists for now.
+        // A better approach would be to filter on the foreign key after getting the location id.
+        // Let's adjust to filter on the 'name' from the joined 'locations' table.
+        // The correct syntax for filtering on a joined table is using the foreign table name in the filter.
+         query = query.ilike('locations.name', `%${location}%`);
       }
 
       // 2. Filter by age
       if (age) {
         if (age.includes('+')) {
           const minAge = parseInt(age.replace('+', ''), 10);
-          query = query.gte('age_min', minAge);
+          query = query.gte('age_max', minAge); // Find activities where the max age is at least the minimum required.
         } else {
           const [minAge, maxAge] = age.split('-').map(Number);
           // The activity's age range must overlap with the selected age range.
-          // This logic finds activities suitable for any child in the selected age group.
           query = query.lte('age_min', maxAge).gte('age_max', minAge);
         }
       }
@@ -87,7 +89,6 @@ function SearchResults() {
     </div>
   );
 }
-
 
 // This is the main page component that wraps our results in a Suspense boundary.
 // This is required by Next.js when using useSearchParams.
