@@ -1,21 +1,27 @@
+// components/SearchBar.js
 "use client";
 
 import React, { useState } from 'react';
+import { useRouter } from 'next/navigation'; // Import the useRouter hook
 
-// This is the main search bar component for the homepage.
 export default function SearchBar() {
-  // State to hold the user's selections
+  const router = useRouter(); // Initialize the router
   const [location, setLocation] = useState('');
   const [age, setAge] = useState('');
   const [dateRange, setDateRange] = useState('');
 
-  // This function will be called when the user clicks the "Search" button.
-  // For now, it just logs the selections. Later, it will navigate
-  // to the search results page with these parameters.
   const handleSearch = (e) => {
-    e.preventDefault(); // Prevents the form from reloading the page
-    console.log({ location, age, dateRange });
-    // TODO: Implement navigation to the search results page
+    e.preventDefault();
+    
+    // Build the query string from the state
+    const queryParams = new URLSearchParams({
+      location,
+      age,
+      dateRange,
+    }).toString();
+
+    // Navigate to the search page with the query parameters
+    router.push(`/search?${queryParams}`);
   };
 
   return (
@@ -23,11 +29,12 @@ export default function SearchBar() {
       {/* Location Dropdown */}
       <select value={location} onChange={(e) => setLocation(e.target.value)} required>
         <option value="" disabled>Location</option>
-        <option value="downtown">Downtown</option>
-        <option value="north_east">North East</option>
-        <option value="south_east">South East</option>
-        <option value="north_west">North West</option>
-        <option value="south_west">South West</option>
+        <option value="Downtown">Downtown</option>
+        <option value="North East">North East</option>
+        <option value="South East">South East</option>
+        <option value="North West">North West</option>
+        <option value="South West">South West</option>
+        <option value="Richmond">Richmond</option>
       </select>
 
       {/* Child's Age Dropdown */}
@@ -42,7 +49,6 @@ export default function SearchBar() {
       {/* Date Range Dropdown */}
       <select value={dateRange} onChange={(e) => setDateRange(e.target.value)} required>
         <option value="" disabled>Date Range</option>
-        <option value="currently_registering">Currently Registering</option>
         <option value="summer">Summer</option>
         <option value="fall">Fall</option>
         <option value="winter">Winter</option>
