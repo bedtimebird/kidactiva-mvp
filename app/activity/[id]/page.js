@@ -4,6 +4,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'next/navigation';
 import { createClient } from '@supabase/supabase-js';
+import ReminderForm from '../../../components/ReminderForm'; // Import the new component
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
@@ -75,13 +76,8 @@ export default function ActivityDetailPage() {
         </a>
         
         {/* --- Secondary CTA (The MVP Hook) --- */}
-        <div className="reminder-form">
-          <h3>Never Miss a Deadline!</h3>
-          <p>Enter your email to get a reminder before registration closes.</p>
-          {/* We will build this component in the next sprint */}
-          <input type="email" placeholder="Enter your email" />
-          <button className="cta-button secondary">Get Registration Reminder</button>
-        </div>
+        {/* Replace the old form with our new component, passing the activity ID */}
+        <ReminderForm activityId={activity.id} />
 
         {/* --- Embedded Map (Placeholder) --- */}
         <div className="map-placeholder">
