@@ -39,7 +39,7 @@ export default function SearchBar() {
 
       {/* Child's Age Dropdown */}
       <select value={age} onChange={(e) => setAge(e.target.value)} required>
-        <option value="" disabled>Child's Age</option>
+        <option value="" disabled>Child&apos;s Age</option>
         <option value="3-5">3-5 Years</option>
         <option value="6-8">6-8 Years</option>
         <option value="9-12">9-12 Years</option>

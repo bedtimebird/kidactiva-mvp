@@ -72,7 +72,7 @@ export default function ActivityDetailPage() {
 
         {/* --- Primary Call-to-Action --- */}
         <a href={activity.provider_registration_url} target="_blank" rel="noopener noreferrer" className="cta-button primary">
-          Register on Provider's Site
+          Register on Provider&apos;s Site
         </a>
         
         {/* --- Secondary CTA (The MVP Hook) --- */}

@@ -28,7 +28,7 @@ export default function ActivityCard({ activity }) {
           onClick={handleExternalLinkClick} 
           className="external-link-button"
         >
-          Register on Provider's Site
+          Register on Provider&apos;s Site
         </button>
       </div>
     </Link>

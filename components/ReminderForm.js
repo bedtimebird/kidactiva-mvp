@@ -38,7 +38,7 @@ export default function ReminderForm({ activityId }) {
     return (
       <div className="reminder-form">
         <h3>Check your inbox!</h3>
-        <p>We've sent a confirmation link to <strong>{email}</strong>. Click the link to set your reminder.</p>
+        <p>We&apos;ve sent a confirmation link to <strong>{email}</strong>. Click the link to set your reminder.</p>
       </div>
     );
   }

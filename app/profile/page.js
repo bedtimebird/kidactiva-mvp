@@ -72,7 +72,7 @@ export default function ProfilePage() {
             ))}
           </ul>
         ) : (
-          <p>You haven't set any reminders yet. Go find an activity!</p>
+          <p>You haven&apos;t set any reminders yet. Go find an activity!</p>
         )}
       </div>
     </main>
