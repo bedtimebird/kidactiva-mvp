@@ -1,4 +1,4 @@
-/ app/api/auth/confirm/route.js
+// app/api/auth/confirm/route.js
 
 import { createRouteHandlerClient } from '@supabase/auth-helpers-nextjs';
 import { cookies } from 'next/headers';
