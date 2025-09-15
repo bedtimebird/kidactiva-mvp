@@ -11,9 +11,7 @@ export default function ActivityCard({ activity }) {
   const activityTitle = activity.title ?? 'Untitled Activity';
 
   return (
-    // The wrapping <Link> has been removed from here.
     <div className="activity-card">
-      {/* The Link now only wraps the title, making it the clickable element. */}
       <Link href={`/activity/${activity.id}`} className="activity-title-link">
         <h3>{activityTitle}</h3>
       </Link>
@@ -23,7 +21,6 @@ export default function ActivityCard({ activity }) {
       <p><strong>Ages:</strong> {activity.age_min}-{activity.age_max}</p>
       <p><strong>Cost:</strong> ${activity.cost}</p>
       
-      {/* This link is now a sibling, not a descendant, which is valid HTML. */}
       <a 
         href={activity.provider_registration_url} 
         target="_blank" 
