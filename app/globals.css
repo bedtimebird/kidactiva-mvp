@@ -124,22 +124,33 @@ a:hover {
 /* --- Components --- */
 
 /* Activity Card */
-.activity-card-link {
-  text-decoration: none;
-  color: inherit;
-}
-
 .activity-card {
   border: 1px solid var(--light-gray);
   padding: 1rem;
   border-radius: 8px;
   margin-bottom: 1rem;
-  transition: box-shadow 0.2s ease-in-out;
 }
 
-.activity-card:hover {
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+.activity-title-link {
+  text-decoration: none;
+  color: inherit;
 }
+
+.activity-title-link h3 {
+  margin-top: 0;
+}
+
+.activity-title-link:hover {
+  text-decoration: underline;
+  color: var(--primary-blue);
+}
+
+.register-link {
+  display: inline-block;
+  margin-top: 0.5rem;
+  font-weight: 500;
+}
+
 
 /* Auth Form (Login Page) */
 .auth-form-container {

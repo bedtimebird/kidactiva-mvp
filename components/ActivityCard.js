@@ -6,31 +6,32 @@ export default function ActivityCard({ activity }) {
     return null;
   }
   
-  // Use optional chaining (?.) to safely access nested properties.
-  // Use the nullish coalescing operator (??) to provide a default value.
   const providerName = activity.providers?.name ?? 'Provider N/A';
   const locationName = activity.locations?.name ?? 'Location N/A';
   const activityTitle = activity.title ?? 'Untitled Activity';
 
-
   return (
-    <Link href={`/activity/${activity.id}`} className="activity-card-link">
-      <div className="activity-card">
+    // The wrapping <Link> has been removed from here.
+    <div className="activity-card">
+      {/* The Link now only wraps the title, making it the clickable element. */}
+      <Link href={`/activity/${activity.id}`} className="activity-title-link">
         <h3>{activityTitle}</h3>
-        <p><strong>Provider:</strong> {providerName}</p>
-        <p><strong>Location:</strong> {locationName}</p>
-        <p><strong>Ages:</strong> {activity.age_min}-{activity.age_max}</p>
-        <p><strong>Cost:</strong> ${activity.cost}</p>
-        
-        <a 
-          href={activity.provider_registration_url} 
-          target="_blank" 
-          rel="noopener noreferrer"
-          onClick={(e) => e.stopPropagation()} 
-        >
-          Register on Provider's Site
-        </a>
-      </div>
-    </Link>
+      </Link>
+      
+      <p><strong>Provider:</strong> {providerName}</p>
+      <p><strong>Location:</strong> {locationName}</p>
+      <p><strong>Ages:</strong> {activity.age_min}-{activity.age_max}</p>
+      <p><strong>Cost:</strong> ${activity.cost}</p>
+      
+      {/* This link is now a sibling, not a descendant, which is valid HTML. */}
+      <a 
+        href={activity.provider_registration_url} 
+        target="_blank" 
+        rel="noopener noreferrer"
+        className="register-link"
+      >
+        Register on Provider's Site
+      </a>
+    </div>
   );
 }
