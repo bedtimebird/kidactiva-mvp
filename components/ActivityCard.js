@@ -27,7 +27,7 @@ export default function ActivityCard({ activity }) {
         rel="noopener noreferrer"
         className="register-link"
       >
-        Register on Provider's Site
+        Register on Provider&apos;s Site
       </a>
     </div>
   );
