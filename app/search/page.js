@@ -22,7 +22,6 @@ function SearchResults() {
       // Get search parameters from the URL.
       const location = searchParams.get('location');
       const age = searchParams.get('age');
-      // const dateRange = searchParams.get('dateRange'); // We'll add this filter later for simplicity.
 
       // Start building the Supabase query.
       let query = supabase
@@ -30,21 +29,13 @@ function SearchResults() {
         .select(`
           *,
           providers ( name ),
-          locations ( name ),
-          categories ( name, icon_url )
+          locations ( name )
         `);
 
       // ## FILTERING LOGIC ##
 
       // 1. Filter by location
       if (location) {
-        // We need to query the joined table's column.
-        // Assuming your locations table has a 'name' column that matches the search param.
-        // This requires an RPC or a view if direct joining filter is complex.
-        // For simplicity, let's assume a direct column 'location_name' exists for now.
-        // A better approach would be to filter on the foreign key after getting the location id.
-        // Let's adjust to filter on the 'name' from the joined 'locations' table.
-        // The correct syntax for filtering on a joined table is using the foreign table name in the filter.
          query = query.ilike('locations.name', `%${location}%`);
       }
 
@@ -52,10 +43,9 @@ function SearchResults() {
       if (age) {
         if (age.includes('+')) {
           const minAge = parseInt(age.replace('+', ''), 10);
-          query = query.gte('age_max', minAge); // Find activities where the max age is at least the minimum required.
+          query = query.gte('age_max', minAge);
         } else {
           const [minAge, maxAge] = age.split('-').map(Number);
-          // The activity's age range must overlap with the selected age range.
           query = query.lte('age_min', maxAge).gte('age_max', minAge);
         }
       }
@@ -92,7 +82,6 @@ function SearchResults() {
 }
 
 // This is the main page component that wraps our results in a Suspense boundary.
-// This is required by Next.js when using useSearchParams.
 export default function SearchResultsPage() {
   return (
     <main className="main">

@@ -8,7 +8,6 @@ export default function SearchBar() {
   const router = useRouter(); // Initialize the router
   const [location, setLocation] = useState('');
   const [age, setAge] = useState('');
-  const [dateRange, setDateRange] = useState('');
 
   const handleSearch = (e) => {
     e.preventDefault();
@@ -17,7 +16,6 @@ export default function SearchBar() {
     const queryParams = new URLSearchParams({
       location,
       age,
-      dateRange,
     }).toString();
 
     // Navigate to the search page with the query parameters
@@ -44,15 +42,6 @@ export default function SearchBar() {
         <option value="6-8">6-8 Years</option>
         <option value="9-12">9-12 Years</option>
         <option value="13+">13+ Years</option>
-      </select>
-
-      {/* Date Range Dropdown */}
-      <select value={dateRange} onChange={(e) => setDateRange(e.target.value)} required>
-        <option value="" disabled>Date Range</option>
-        <option value="summer">Summer</option>
-        <option value="fall">Fall</option>
-        <option value="winter">Winter</option>
-        <option value="spring">Spring</option>
       </select>
 
       <button type="submit">Search</button>
