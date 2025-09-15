@@ -30,7 +30,8 @@ function SearchResults() {
         .select(`
           *,
           providers ( name ),
-          locations ( name )
+          locations ( name ),
+          categories ( name, icon_url )
         `);
 
       // ## FILTERING LOGIC ##

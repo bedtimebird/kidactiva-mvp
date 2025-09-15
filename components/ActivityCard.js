@@ -9,11 +9,15 @@ export default function ActivityCard({ activity }) {
   const providerName = activity.providers?.name ?? 'Provider N/A';
   const locationName = activity.locations?.name ?? 'Location N/A';
   const activityTitle = activity.title ?? 'Untitled Activity';
+  const categoryIcon = activity.categories?.icon_url; 
 
   return (
     <div className="activity-card">
       <Link href={`/activity/${activity.id}`} className="activity-title-link">
-        <h3>{activityTitle}</h3>
+        <h3>
+          {categoryIcon && <img src={categoryIcon} alt={activity.categories.name} className="category-icon" />}
+          {activityTitle}
+        </h3>
       </Link>
       
       <p><strong>Provider:</strong> {providerName}</p>
