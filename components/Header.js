@@ -35,7 +35,9 @@ export default function Header() {
   return (
     <header className="site-header">
       <div className="header-left">
-        <Link href="/" className="logo">KidActiva</Link>
+        <Link href="/" className="logo">
+          <img src="/images/kidactiva-logo.png" alt="KidActiva Logo" className="logo-image" />
+        </Link>
       </div>
       
       <div className="header-center">
@@ -47,10 +49,14 @@ export default function Header() {
           {user ? (
             <>
               <Link href="/profile">My Profile</Link>
-              <button onClick={handleLogout} className="logout-button">Log Out</button>
+              {/* Updated class name for consistent styling */}
+              <button onClick={handleLogout} className="header-auth-button">Log Out</button>
             </>
           ) : (
-            <Link href="/login" className='login-button'>Log In</Link>
+            <>
+              {/* Updated class name for consistent styling */}
+              <Link href="/login" className="header-auth-button">Log In</Link>
+            </>
           )}
         </nav>
       </div>
