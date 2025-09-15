@@ -1,14 +1,14 @@
-import SearchBar from '../components/SearchBar'; // Import the component
+// app/page.js
 
 export default function Home() {
   return (
-    <main className="main">
+    <main className="main homepage-content">
       <h1 className="title">
-        Find Your Childs Next Adventure in Vancouver
+        Find Your Child&apos;s Next Adventure in Vancouver
       </h1>
-
-      {/* This is where you render the component */}
-      <SearchBar />
+      <p className="subtitle">
+        Search for camps, classes, and workshops all in one place.
+      </p>
     </main>
   );
 }
