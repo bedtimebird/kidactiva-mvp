@@ -108,7 +108,7 @@ a:hover {
   justify-content: center;
   align-items: center;
   text-align: center;
-  height: 80vh;
+  height: auto; /* Remove fixed height */
 }
 
 .title {
@@ -120,6 +120,29 @@ a:hover {
   font-size: 1.25rem;
   color: var(--medium-gray);
 }
+
+
+/* --- Homepage Additions --- */
+.hero-section {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.featured-activities,
+.more-activities {
+  margin-bottom: 2rem;
+}
+
+.activity-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+}
+
+.activity-grid.featured {
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+}
+
 
 /* --- Components --- */
 
@@ -251,11 +274,4 @@ a:hover {
     color: red;
     font-size: 0.9rem;
     margin-top: 0.5rem;
-}
-
-.category-icon {
-  width: 24px;
-  height: 24px;
-  margin-right: 8px;
-  vertical-align: middle;
 }
