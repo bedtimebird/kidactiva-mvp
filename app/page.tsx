@@ -4,8 +4,8 @@ import React, { useState, useEffect } from 'react';
 import { createClient } from '@supabase/supabase-js';
 import ActivityCard from '../components/ActivityCard';
 
-const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
+const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
 const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
 export default function Home() {
@@ -40,7 +40,7 @@ export default function Home() {
     <main className="main">
       <div className="hero-section">
         <h1 className="title">
-          Find Your Child&apos;s Next Adventure in Vancouver
+          Find Your Child's Next Adventure in Vancouver
         </h1>
         <p className="subtitle">
           Search for camps, classes, and workshops all in one place.
