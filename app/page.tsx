@@ -67,7 +67,7 @@ export default function Home() {
           <div className="featured-activities">
             <h2>Featured Activities</h2>
             <div className="activity-grid featured">
-              {activities.slice(0, 4).map(activity => (
+              {activities.slice(0, 3).map(activity => (
                 <ActivityCard key={activity.id} activity={activity} />
               ))}
             </div>
@@ -76,7 +76,7 @@ export default function Home() {
           <div className="more-activities">
             <h2>More Activities</h2>
             <div className="activity-grid">
-              {activities.slice(4, 22).map(activity => (
+              {activities.slice(3, 22).map(activity => (
                 <ActivityCard key={activity.id} activity={activity} />
               ))}
             </div>
