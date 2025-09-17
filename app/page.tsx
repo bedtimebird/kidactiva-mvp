@@ -40,7 +40,7 @@ export default function Home() {
     <main className="main">
       <div className="hero-section">
         <h1 className="title">
-          Find Your Child's Next Adventure in Vancouver
+          Find Your Child&apos;s Next Adventure in Vancouver
         </h1>
         <p className="subtitle">
           Search for camps, classes, and workshops all in one place.
