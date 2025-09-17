@@ -9,7 +9,6 @@ const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
 const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
-// The main component that reads URL params and fetches data.
 function SearchResults() {
   const searchParams = useSearchParams();
   const [activities, setActivities] = useState([]);
@@ -19,27 +18,22 @@ function SearchResults() {
     const fetchActivities = async () => {
       setLoading(true);
 
-      // Get search parameters from the URL.
       const location = searchParams.get('location');
       const age = searchParams.get('age');
 
-      // Start building the Supabase query.
       let query = supabase
         .from('activities')
         .select(`
           *,
           providers ( name ),
-          locations ( name )
+          locations ( name ),
+          categories ( icon_url )
         `);
 
-      // ## FILTERING LOGIC ##
-
-      // 1. Filter by location
       if (location) {
          query = query.ilike('locations.name', `%${location}%`);
       }
 
-      // 2. Filter by age
       if (age) {
         if (age.includes('+')) {
           const minAge = parseInt(age.replace('+', ''), 10);
@@ -50,7 +44,6 @@ function SearchResults() {
         }
       }
       
-      // Execute the final query.
       const { data, error } = await query;
 
       if (error) {
@@ -62,7 +55,7 @@ function SearchResults() {
     };
 
     fetchActivities();
-  }, [searchParams]); // Re-run the effect if the search parameters change.
+  }, [searchParams]);
 
   if (loading) {
     return <div>Loading activities...</div>;
@@ -81,7 +74,6 @@ function SearchResults() {
   );
 }
 
-// This is the main page component that wraps our results in a Suspense boundary.
 export default function SearchResultsPage() {
   return (
     <main className="main">
