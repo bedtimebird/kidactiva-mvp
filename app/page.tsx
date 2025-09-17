@@ -8,8 +8,20 @@ const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
 const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
+// Define the type for an activity
+type Activity = {
+  id: number;
+  title: string;
+  providers: { name: string } | null;
+  locations: { name: string } | null;
+  age_min: number;
+  age_max: number;
+  cost: number;
+  provider_registration_url: string;
+};
+
 export default function Home() {
-  const [activities, setActivities] = useState([]);
+  const [activities, setActivities] = useState<Activity[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -25,7 +37,7 @@ export default function Home() {
 
       if (error) {
         console.error('Error fetching activities:', error);
-      } else {
+      } else if (data) {
         // Shuffle the activities for a random display
         const shuffled = data.sort(() => 0.5 - Math.random());
         setActivities(shuffled);
