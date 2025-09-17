@@ -8,13 +8,13 @@ const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL!;
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
 const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
-// Define the type for an activity, now including categories
+// Define the type for an activity, now including sub_categories
 type Activity = {
   id: number;
   title: string;
   providers: { name: string } | null;
   locations: { name: string } | null;
-  categories: { icon_url: string } | null;
+  sub_categories: { icon_url: string } | null; // Corrected from categories
   age_min: number;
   age_max: number;
   cost: number;
@@ -34,7 +34,7 @@ export default function Home() {
           *,
           providers ( name ),
           locations ( name ),
-          categories ( icon_url )
+          sub_categories ( icon_url )
         `);
 
       if (error) {

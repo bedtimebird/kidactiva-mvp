@@ -27,7 +27,7 @@ function SearchResults() {
           *,
           providers ( name ),
           locations ( name ),
-          categories ( icon_url )
+          sub_categories ( icon_url )
         `);
 
       if (location) {

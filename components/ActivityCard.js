@@ -8,7 +8,7 @@ export default function ActivityCard({ activity }) {
   const providerName = activity.providers?.name ?? 'Provider N/A';
   const locationName = activity.locations?.name ?? 'Location N/A';
   const activityTitle = activity.title ?? 'Untitled Activity';
-  const categoryIcon = activity.categories?.icon_url;
+  const categoryIcon = activity.sub_categories?.icon_url; // Corrected from categories
 
   return (
     <div className="activity-card">
